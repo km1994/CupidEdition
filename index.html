@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>告白气球 🎈 · 爱神丘比特，帮你把心意送到</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="logo">🎈</span> 告白气球 <small>CUPID EDITION</small></div>
+    <nav class="nav">
+      <button class="active" onclick="showView('view-home', this)">首页</button>
+      <button onclick="showView('view-wizard', this)">丘比特之箭</button>
+      <button onclick="showView('view-balloon', this)">告白气球</button>
+      <button onclick="showView('view-kb', this)">知识库</button>
+    </nav>
+    <span class="safety-pill">🛡 尊重选择 · 不窥心 · 每种爱都被祝福</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 首页 ============ -->
+<section id="view-home" class="view active">
+  <div class="hero">
+    <h1>把没说出口的心动，<span>系在气球上</span></h1>
+    <p class="slogan">爱神丘比特（Cupid）在线营业：先安放你的心事，再陪你把爱说出去。</p>
+    <div class="why">
+      单身的人很多，不是不想爱，而是<b>这一步太难迈</b>。<br>
+      告白气球不承诺「追到任何人」，也不假装能看穿谁的心——它只是把心理学、传播学、法律与哲学里
+      靠谱的部分，翻译成你此刻就能用的东西：一次想明白的整理、一段可以发出的真心话、
+      一颗能飞到 TA 面前的气球。
+    </div>
+  </div>
+  <div class="entry-grid">
+    <div class="entry" id="entryGo">
+      <div class="ico">🏹</div>
+      <h3>丘比特之箭</h3>
+      <p>五支箭带你走完一次心事的整理：安放情绪 → 写下你们 → 校准信号 → 缘分推演 → 爱的台词。</p>
+    </div>
+    <div class="entry" id="entryBalloon">
+      <div class="ico">🎈</div>
+      <h3>告白气球工作台</h3>
+      <p>十二款气球主题 + 背景音乐，把你的心意做成一颗会飞、会唱歌的气球页，一键发送。</p>
+    </div>
+    <div class="entry" id="entryKB">
+      <div class="ico">📚</div>
+      <h3>跨学科知识库</h3>
+      <p>心理、沟通、法律、社会、哲学、家庭、性学、多元关系——每张卡片都标注了证据可信度。</p>
+    </div>
+  </div>
+  <div class="safety-box">
+    <h3>🛡 丘比特的三条弓弦底线</h3>
+    <li><b>对方说了「不」，弓就要收。</b>拒绝、回避、请不要再联系——任何一种都到此为止。丘比特不射对着说「不」的人的第二箭。</li>
+    <li><b>不窥探人心，不承诺结局。</b>所有推演基于你提供的真实相处证据。人心是活的，任何「必中公式」都是幻觉。</li>
+    <li><b>危险的事，先保命再说爱。</b>遇到暴力、胁迫、跟踪、诈骗或伤害自己的念头，这里只提供安全通道与求助资源，不提供恋爱建议。求助：报警 110 · 反诈 96110 · 妇联 12338 · 心理援助热线 12356。</li>
+  </div>
+</section>
+
+<!-- ============ 丘比特之箭 ============ -->
+<section id="view-wizard" class="view">
+  <div class="steps">
+    <span class="step-chip current" onclick="gotoStep(1)"><span class="n">1</span>安放心事</span>
+    <span class="step-chip" onclick="gotoStep(2)"><span class="n">2</span>写下你们</span>
+    <span class="step-chip" onclick="gotoStep(3)"><span class="n">3</span>校准信号</span>
+    <span class="step-chip" onclick="gotoStep(4)"><span class="n">4</span>缘分推演</span>
+    <span class="step-chip" onclick="gotoStep(5)"><span class="n">5</span>爱的台词</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="panel wiz-panel active" id="wizStep1">
+    <h2>第一支箭 · 安放心事</h2>
+    <p class="sub">翻涌的时候，谁也给不出好建议。这一步不谈 TA，只把你的情绪先安顿好。</p>
+    <div class="field">
+      <label>现在心里翻涌的程度</label>
+      <div class="slider-row">
+        <input type="range" id="emoSlider" min="0" max="10" value="5">
+        <span class="slider-val" id="emoVal">5 / 10</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>最贴近你此刻的词 <span class="hint">（可多选）</span></label>
+      <div class="chips" id="feelingChips"></div>
+    </div>
+    <div class="field">
+      <label>愿意讲讲发生了什么吗？<span class="hint">（可跳过，想到哪写到哪）</span></label>
+      <textarea id="emoStory" rows="3" placeholder="比如：昨晚给TA发消息，TA过了六个小时才回一个「嗯」……"></textarea>
+    </div>
+    <div id="reflectionBox"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="readEmotions()">心事有着落了，下一支箭 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="panel wiz-panel" id="wizStep2">
+    <h2>第二支箭 · 写下你们</h2>
+    <p class="sub">评分只是你此刻的主观感受，不代表任何人的价值。没把握的栏位空着就好。</p>
+    <div class="person-card">
+      <h4>🙋 先写你自己</h4>
+      <div class="grid3">
+        <div class="field"><label>怎么称呼你</label><input type="text" id="myName" placeholder="昵称即可"></div>
+        <div class="field"><label>你的 MBTI <span class="hint">（选填，仅供参考）</span></label><input type="text" id="myMbti" placeholder="如 ENFP"></div>
+        <div class="field"><label>你的状态自评 0–100</label>
+          <input type="range" id="myScore" min="0" max="100" value="60" oninput="this.nextElementSibling.textContent=this.value">
+          <div class="slider-val">60</div></div>
+      </div>
+    </div>
+    <div id="targetCards"></div>
+    <button class="btn btn-ghost btn-sm" onclick="addTarget()">+ 再加一位心动对象（纠结人选时用）</button>
+    <div class="field" style="margin-top:20px">
+      <label>你们的来路</label>
+      <div class="grid2">
+        <div class="field"><label>怎么认识的</label><input type="text" id="ctxMet" placeholder="同学 / 同事 / 网友 / 朋友介绍…"></div>
+        <div class="field"><label>认识 / 暧昧多久了（月）</label><input type="text" id="ctxMonths" placeholder="如 3"></div>
+      </div>
+      <div class="field"><label>最近三件难忘的小事</label><textarea id="ctxEvents" rows="2" placeholder="如：上周一起看了展 / TA生日我送了礼物 / 吵过一次架…"></textarea></div>
+      <div class="grid2">
+        <div class="field"><label>互动节奏 <span class="hint">（通常谁先开口）</span></label>
+          <select id="ctxInvest">
+            <option value="recip">有来有往，都很上心</option>
+            <option value="me">我主动得多一点</option>
+            <option value="more">几乎都是我在主动</option>
+            <option value="ta">TA 比我更主动</option>
+          </select></div>
+        <div class="field"><label>这次想解决的问题</label>
+          <select id="ctxGoal">
+            <option>表白</option><option>推进</option><option>回复</option><option>修复</option><option>退场</option>
+          </select></div>
+      </div>
+      <div class="field"><label>这段感情的样子 <span class="hint">（不预设任何一种）</span></label>
+        <select id="ctxRelType">
+          <option>异性</option><option>同性</option><option>不确定 / 保密</option><option>非单偶（知情同意）</option>
+        </select></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="gotoStep(1)">← 上一支箭</button>
+      <button class="btn btn-primary" onclick="readProfile()">写好了，下一支箭 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="panel wiz-panel" id="wizStep3">
+    <h2>第三支箭 · 校准信号</h2>
+    <p class="sub">心动会让人把「盼望发生的事」记成「已经发生的事」。这一步只认 TA 稳定出现的行为。</p>
+    <div class="field">
+      <label>TA 的积极信号 <span class="hint">（只勾最近几周确实发生过的）</span></label>
+      <div class="chips" id="signalChips"></div>
+    </div>
+    <div class="field">
+      <label>需要正视的现实 <span class="hint">（勾选真实存在的）</span></label>
+      <div class="chips" id="riskChips"></div>
+    </div>
+    <div class="field"><label>✅ 确定的事实 <span class="hint">（有截图、有见证、能复述）</span></label>
+      <textarea id="sigFacts" rows="2" placeholder="如：本月TA主动找我 4 次；上周六单独吃饭TA提前到了"></textarea></div>
+    <div class="field"><label>🤔 我的猜测 <span class="hint">（有依据但没证实）</span></label>
+      <textarea id="sigGuess" rows="2" placeholder="如：TA秒回我，可能也在意我"></textarea></div>
+    <div class="field"><label>❓ 我不知道的 <span class="hint">（不猜，先留白）</span></label>
+      <textarea id="sigUnknown" rows="2" placeholder="如：TA是否在跟别人暧昧；TA对我是什么定位"></textarea></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="gotoStep(2)">← 上一支箭</button>
+      <button class="btn btn-primary" onclick="gotoStep(4)">让丘比特推演 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="panel wiz-panel" id="wizStep4">
+    <h2>第四支箭 · 缘分推演</h2>
+    <p class="sub">推演只基于你勾选和填写的行为证据——它不是读心术，证据变了，结论也会变。</p>
+    <div id="analysisBox"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="gotoStep(3)">← 回去补充证据</button>
+      <button class="btn btn-primary" onclick="gotoStep(5)">领爱的台词 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="panel wiz-panel" id="wizStep5">
+    <h2>第五支箭 · 爱的台词</h2>
+    <p class="sub">打开就能直接用。三档语气选一个坚持说完，别混着来。</p>
+    <div class="btn-row" style="margin:0 0 16px">
+      <button class="btn btn-ghost btn-sm" onclick="importFromTactic()">🎈 把台词做成告白气球</button>
+    </div>
+    <div id="tacticBox"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="gotoStep(4)">← 回看推演</button>
+      <button class="btn btn-primary" onclick="showView('view-balloon', $$('.nav button')[2])">去做一颗气球 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 告白气球工作台 ============ -->
+<section id="view-balloon" class="view">
+  <div class="panel">
+    <h2>🎈 告白气球工作台</h2>
+    <p class="sub">一封信、一颗气球、一段音乐——生成的是独立 HTML 文件，微信 / QQ 里直接发送，点开即看。半私密、不施压：TA 可以慢慢看，也可以先放一放。</p>
+    <div class="grid2">
+      <div class="field"><label>TA 的称呼</label><input type="text" id="bTo" placeholder="如：小鹿" oninput="renderBalloonPreview()"></div>
+      <div class="field"><label>署名</label><input type="text" id="bFrom" placeholder="如：一个喜欢你很久的人" oninput="renderBalloonPreview()"></div>
+    </div>
+    <div class="field"><label>标题</label><input type="text" id="bTitle" value="我喜欢你" oninput="renderBalloonPreview()"></div>
+    <div class="field"><label>情书正文 <span class="hint">（每行一句；说一件具体的小事，比一百句漂亮话都动人）</span></label>
+      <textarea id="bLetter" rows="5" oninput="renderBalloonPreview()">有些话，当面说不出口。
+所以我把它系在气球上，让它替我飞到你面前。
+我喜欢你。
+不用急着回答我，气球不催人。</textarea></div>
+    <div class="field">
+      <label>背景音乐 <span class="hint">（可选：上传本地音乐会内嵌进文件，文件会变大；或粘贴音乐直链。生成的页面右下角有音符按钮开关音乐）</span></label>
+      <div class="grid2">
+        <div class="field"><label>🎧 上传本地音乐（mp3/m4a/wav）</label><input type="file" id="bMusicFile" accept="audio/*" onchange="handleMusicFile(this)"></div>
+        <div class="field"><label>🔗 或音乐直链</label><input type="text" id="bMusicUrl" placeholder="https://... song.mp3" oninput="handleMusicUrl(this.value)"></div>
+      </div>
+      <p class="hint" id="musicStatus" style="font-size:12px;color:var(--ink-soft)">未添加音乐</p>
+    </div>
+    <div class="field">
+      <label>气球风格 <span class="hint">（12 款）</span></label>
+      <div class="balloon-style-pick" id="stylePick"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="downloadBalloon()">⬇️ 下载告白气球（发给 TA）</button>
+      <button class="btn btn-ghost btn-sm" onclick="importFromTactic()">从台词导入</button>
+    </div>
+    <div class="preview-frame"><iframe id="balloonFrame" title="告白气球预览"></iframe></div>
+  </div>
+</section>
+
+<!-- ============ 知识库 ============ -->
+<section id="view-kb" class="view">
+  <div class="hero" style="padding-bottom:10px">
+    <h1 style="font-size:30px">📚 跨学科知识库</h1>
+    <p class="slogan" style="font-size:14px">每张卡片标注证据可信度：A 研究证据充分 · B 有解释力的理论 · C 经验之谈 · D 风险警示。点卡片展开。</p>
+  </div>
+  <input class="kb-search" id="kbSearch" placeholder="搜索：表白 / 拒绝 / 同意 / 法律 / 依恋 …">
+  <div class="kb-cats" id="kbCats"></div>
+  <div class="kb-grid" id="kbGrid"></div>
+</section>
+
+</main>
+
+<div class="modal-mask" id="aiModal" hidden>
+  <div class="modal">
+    <h3>🤖 AI 定制台词（可选）</h3>
+    <p class="sub" style="font-size:12px;color:var(--ink-soft);line-height:1.8;margin-bottom:14px">填任意 OpenAI 兼容接口（DeepSeek / Kimi / GLM 等）。Key 只保存在你的浏览器本地。丘比特会把你在前四支箭填写的称呼、小事、信号与推演结论打包发给模型，让它按你们真实的故事写台词。若服务商不允许浏览器跨域（CORS），请求会被拦截，请换支持 CORS 的服务商。</p>
+    <div class="field"><label>接口地址 Base URL</label><input type="text" id="aiBase" placeholder="https://api.deepseek.com/v1"></div>
+    <div class="field"><label>API Key</label><input type="text" id="aiKey" placeholder="sk-..."></div>
+    <div class="field"><label>模型</label><input type="text" id="aiModel" placeholder="deepseek-chat"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="aiGenerate()">按我们的故事生成台词</button>
+      <button class="btn btn-ghost" onclick="closeAIModal()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>告白气球 🎈 Cupid Edition · 爱神负责递箭，选择权永远在你和 TA 手里 · 本平台提供关系教育与决策参考，不替代心理咨询、法律意见与紧急服务</footer>
+
+<script src="js/knowledge.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
